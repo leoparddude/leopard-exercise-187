@@ -101,7 +101,7 @@ public class Inventory
 			//if file found and opened ASSIGN recordCount to resetValue
 			recordCount = RESET_VALUE;
 			//field assignments loop ASSIGNS file values to array elements while hasNext method is true AND recordCount is less than MAX_RECORDS
-			while(infile.hasNext() == true &&  borrowedSize < MAX_RECORDS && recordCount < borrowedSize)
+			while(infile.hasNext() == true &&  borrowedSize < MAX_RECORDS && recordCount < MAX_RECORDS)
 			{
 				itemIDs[recordCount] = infile.nextInt();
 				itemNames[recordCount] = infile.next();
