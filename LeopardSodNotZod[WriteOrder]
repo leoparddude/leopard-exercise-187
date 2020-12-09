@@ -1,0 +1,73 @@
+/*
+* AUTHOR: Thomas Leopard
+* COURSE: CPT187 Fall 2 2020
+* PURPOSE: Writes a order details to a file for use in reporting. 
+* CREATEDATE: 12/01/2020
+*/
+package edu.cpt187.leopard.exercise6;
+
+//import
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteOrder 
+{
+	//class non-constant attributes
+	private boolean fileFoundFlag = true;
+	private String masterFileName = "";
+	private int recordCount = 0;
+	
+	//use non-default constructor
+	public WriteOrder(String borrowedFileName) 
+	{
+		masterFileName = borrowedFileName;
+	}//END constructor
+	
+	//set method
+	//this method will WRITE the order's item id, name, price, quantity, and total cost to a file
+	public void setWriteOrder(int borrowedItemID, String borrowedItemName, double borrowedItemPrice, int borrowedQuantity, double borrowedOrderCost)
+	{
+		//try
+		try
+		{
+			//attempt to open file
+			PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName, true));
+			//if attempt is successful write borrowed values to file
+			filePW.printf("%n%d\t%s\t%f\t%d\t%f", borrowedItemID, borrowedItemName, borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+			//increment record count
+			recordCount++;
+			//found flag to true
+			fileFoundFlag = true;
+			//close PrintWriter
+			filePW.close();
+		}//END try block
+		
+		//catch
+		catch(IOException ex)
+		{
+			fileFoundFlag = false;
+		}//END catch block
+	}//END setWriteOrder
+	
+	//get method
+	//this method will RETURN the value of fileFoundFlag
+	public boolean getFileFoundFlag()
+	{
+		return fileFoundFlag;
+	}//END getFileFoundFlag
+	
+	//get method
+	//this method will RETURN the value masterFileName
+	public String getFileName()
+	{
+		return masterFileName;
+	}//END getFileName
+	
+	//get method
+	//this method will RETURN the value of recordCount
+	public int getRecordCount()
+	{
+		return recordCount;
+	}//END getRecordCount
+}//END WriteOrder 
